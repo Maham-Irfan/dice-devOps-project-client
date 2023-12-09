@@ -18,6 +18,7 @@ env:
   REGISTRY: docker.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: mahamirfan99/dice-devops-project-client
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 
 jobs:
@@ -112,3 +113,10 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      - name: Slack Notification
+        uses: act10ns/slack@v1
+        with: 
+          status: ${{ job.status }}
+          channel: '#project'
+          message: Deploying Nextjs Client
+        if: always()
