@@ -24,12 +24,12 @@
 * Click on create new user and then set the name of the user
 * Click next, attach policies to the user directly, The following policies should be attached to the user other wise the user will not be able to create an EC2 instance, push to the ECR repository and create a VPC
 
-![Image Alt text](/images/policies.JPG "Policies")
+![Image Alt text](/public/images/policies.JPG "Policies")
 
 * Click on Create User
 * When the user is created, go to Access Key and create an Access Key for the user to access the AWS CLI console. This will download the file containing the key id and secret in a csv file when the key is created
 
-![Image Alt text](/images/IAM-User.JPG "User")
+![Image Alt text](/public/images/IAM-User.JPG "User")
 
 * Download the zip folder for Terraform and install it in a folder
 * Download and Install the AWS CLI
@@ -87,7 +87,7 @@ The chdir contains the folder that contains the .tf files created for the projec
 * The registery name and image name were stored as environment variables in the workflow
 * The job obtained from "Publish Docker Container" was modified to build and push the image to the repository created in dockher hub. The original verison pushes it to Github packages. The modification was made in the registery name, image name and the log in credentials for docker
 
-![Image Alt text](images/dockerhub.JPG "Repositories")
+![Image Alt text](/public/images/dockerhub.JPG "Repositories")
 
 * Go to the settings of the repository, then go to secrets and add the aws access key id, key secret and account id as secrets to allow the image to be pulled from the ECR, after which the tag is updated using the docker tag command "docker tag sourcetag targettag" and the image with the new tag is pushed to the ECR repository after which the python-server container is stopped and removed and then run again using the compose command with the new Image
 
@@ -95,7 +95,7 @@ The chdir contains the folder that contains the .tf files created for the projec
 
 * Push the code to the GitHub repository and upon pushing the job is run which at the end sends a notification to the slack channel
 
-![Image Alt text](images/images-dockerhub-client.JPG "Images in Docker Hub Repository")
+![Image Alt text](/public/images/images-dockerhub-client.JPG "Images in Docker Hub Repository")
 
 
 
@@ -106,6 +106,6 @@ The chdir contains the folder that contains the .tf files created for the projec
 * Go to yaml file for workflow and replace all the runs-on: ubuntu commands with runs-on: self hosted
 * Push the changes to the remote repository
 
-![Image Alt text](images/runner-client.JPG "Runner - Instance")
+![Image Alt text](/public/images/runner-client.JPG "Runner - Instance")
 
-![Image Alt text](images/runner-client-github.JPG "Runner - GitHub")
+![Image Alt text](/public/images/runner-client-github.JPG "Runner - GitHub")
