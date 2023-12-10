@@ -56,9 +56,9 @@ The following steps are mandatory to run the instance
 * Create a aws_key_pair.tf while which creates a key which is used to ssh into the server. Without this key you won't be given access to execute the ssh command
 * Create a main.tf file which creates the VPC, internet gateway which is connected to the VPC, creates a routing table which is connected to the internet gateway, assigns a subnet and created a security group to expose the ports of the host system so that the container can be deployed on the host port. It exposes port 3000 for http, 22 for ssh, 3020 for grafana, 9090 for prometheus and 9100 for node_exported
 * An ec2 instance is created in the end of the main.tf file which is given the subnet created and the user-data contains the script which is run when the instance is launched. The script downloads and installs docker, docker compose, git, AWS cli in the instance and then configures the aws. Here I have mentioned "aws configure" command in the script for security reasons as the access key and secret can not be pushed but add the following commands in the script instead: 
-aws configure set aws_access_key_id ${keyid}
-aws configure set aws_secret_access_key ${keysecret}
-aws configure set region us-east-1
+        aws configure set aws_access_key_id {keyid}
+        aws configure set aws_secret_access_key {keysecret}
+        aws configure set region us-east-1
 The script won't proceed without these three commands, if the "aws configure" command is executed directly as it asks for the access key id and secret which can not be entered manually in this case
 The configuration of AWS CLI was necessary because we have to pull the docker image from the ECR reposiotry and here we will again the same commands format as displayed by the "View Push Commands" when the ECR repository was clicked but we will replace the push commands with pull now
 A temporary container is then run inside the instance from which the docker compose file is copied to the local directory in the instance 
