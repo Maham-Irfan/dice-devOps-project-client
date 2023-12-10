@@ -61,9 +61,7 @@ The following steps are mandatory to run the instance
        3. aws configure set region us-east-1
 The script won't proceed without these three commands, if the "aws configure" command is executed directly as it asks for the access key id and secret which can not be entered manually in this case
 The configuration of AWS CLI was necessary because we have to pull the docker image from the ECR reposiotry and here we will again the same commands format as displayed by the "View Push Commands" when the ECR repository was clicked but we will replace the push commands with pull now.
-A temporary container is then run inside the instance from which the docker compose file is copied to the local directory in the instance 
-The image name is then replaced with the pulled image in the docker-compose.yaml file
-The docker compose file is then executed to run the python app within the container
+A temporary container is then run inside the instance from which the docker compose file is copied to the local directory in the instance. The image name is then replaced with the pulled image in the docker-compose.yaml file. The docker compose file is then executed to run the python app within the container.
 *The output.tf file was created which contains the key created and the public IP address assigned to the instance
 * Once all the tf files have been created, open the command prompt and change the directory to the one that contains the installed terraform.exe and then execute the following commands:
 terraform -chdir="C:\Users\username\Project\client\terraform" init
